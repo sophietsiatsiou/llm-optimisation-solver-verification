@@ -1,0 +1,149 @@
+[
+  {
+    "id": "product_mix",
+    "name": "Product mix",
+    "prompt": "A workshop makes chairs and tables. Each chair earns 3 units of profit and uses 2 hours of labor and 1 unit of wood. Each table earns 5 units of profit and uses 1 hour of labor and 2 units of wood. There are at most 10 labor hours and 8 units of wood. How many chairs and tables should be made to maximize profit? Production quantities may be continuous and nonnegative.",
+    "reference": {
+      "name": "product_mix",
+      "sense": "max",
+      "variables": [
+        {
+          "name": "chairs",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "name": "tables",
+          "lower": 0,
+          "upper": null
+        }
+      ],
+      "objective": {
+        "coefficients": {
+          "chairs": 3,
+          "tables": 5
+        }
+      },
+      "constraints": [
+        {
+          "name": "labor",
+          "coefficients": {
+            "chairs": 2,
+            "tables": 1
+          },
+          "sense": "<=",
+          "rhs": 10
+        },
+        {
+          "name": "wood",
+          "coefficients": {
+            "chairs": 1,
+            "tables": 2
+          },
+          "sense": "<=",
+          "rhs": 8
+        }
+      ]
+    },
+    "known_optimum": 22,
+    "notes": "Continuous LP; optimum is chairs=4, tables=2, objective=22."
+  },
+  {
+    "id": "diet_cost",
+    "name": "Diet cost minimization",
+    "prompt": "A diet uses foods A and B. Food A costs 2 per serving and supplies 3 protein units and 1 fiber unit. Food B costs 3 per serving and supplies 2 protein units and 2 fiber units. Choose nonnegative continuous servings to minimize cost while obtaining at least 12 protein units and at least 6 fiber units.",
+    "reference": {
+      "name": "diet_cost",
+      "sense": "min",
+      "variables": [
+        {
+          "name": "food_a",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "name": "food_b",
+          "lower": 0,
+          "upper": null
+        }
+      ],
+      "objective": {
+        "coefficients": {
+          "food_a": 2,
+          "food_b": 3
+        }
+      },
+      "constraints": [
+        {
+          "name": "protein",
+          "coefficients": {
+            "food_a": 3,
+            "food_b": 2
+          },
+          "sense": ">=",
+          "rhs": 12
+        },
+        {
+          "name": "fiber",
+          "coefficients": {
+            "food_a": 1,
+            "food_b": 2
+          },
+          "sense": ">=",
+          "rhs": 6
+        }
+      ]
+    },
+    "known_optimum": 10.5,
+	"notes": "Continuous LP; optimum is food_a=3, food_b=1.5, objective=10.5."
+  },
+  {
+    "id": "production_capacity",
+    "name": "Production capacity",
+    "prompt": "A factory produces units of products X and Y. Each X gives revenue 8 and each Y gives revenue 6. X requires 2 machine hours and 1 worker hour. Y requires 1 machine hour and 2 worker hours. Available capacity is 100 machine hours and 80 worker hours. Maximize revenue with nonnegative continuous production quantities.",
+    "reference": {
+      "name": "production_capacity",
+      "sense": "max",
+      "variables": [
+        {
+          "name": "x",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "name": "y",
+          "lower": 0,
+          "upper": null
+        }
+      ],
+      "objective": {
+        "coefficients": {
+          "x": 8,
+          "y": 6
+        }
+      },
+      "constraints": [
+        {
+          "name": "machine",
+          "coefficients": {
+            "x": 2,
+            "y": 1
+          },
+          "sense": "<=",
+          "rhs": 100
+        },
+        {
+          "name": "worker",
+          "coefficients": {
+            "x": 1,
+            "y": 2
+          },
+          "sense": "<=",
+          "rhs": 80
+        }
+      ]
+    },
+    "known_optimum": 440,
+    "notes": "Continuous LP; reference optimum should be confirmed using the solver."
+  }
+]
